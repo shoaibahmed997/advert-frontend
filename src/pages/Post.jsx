@@ -15,7 +15,7 @@ const Post = () => {
     }
 
   return (
-      <div className='bg-neutral-100' >
+      <div className='bg-neutral-100 relative' >
           <Button onClick={handlenav} className='top-1 left-1 absolute z-10'>&larr;</Button>
     <Carousel interval={null} className=' bg-zinc-800' >
     <Carousel.Item>

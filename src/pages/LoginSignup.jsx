@@ -18,7 +18,7 @@ const Login = ()=>{
 }
 
   return (
-        <Form onSubmit={handleSubmit} className='w-80 bg-slate-50 p-6'>
+        <Form onSubmit={handleSubmit} className='w-80 bg-slate-50 p-6 drop-shadow-lg'>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control value={email} onChange={(e)=>setemail(e.target.value)} type="email" placeholder="Enter email" />
@@ -38,18 +38,23 @@ const Login = ()=>{
 }
 
 
+
+
 const Signup = ()=>{
   const [firstname,setfirstname]  = useState("")
   const [lastname,setlastname]  = useState("")
   const [email,setemail]  = useState("")
   const [password,setpassword]  = useState("")
-  const handleSubmit = (e)=>{
+
+  const handleSubmit = async(e)=>{
     e.preventDefault()
+    
+    
     
 }
 
 return (
-  <Form onSubmit={handleSubmit} className='w-80 bg-slate-50 p-6'>
+  <Form onSubmit={handleSubmit} className='w-80 bg-slate-50 p-6 drop-shadow-lg'>
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>First Name</Form.Label>
     <Form.Control value={firstname} onChange={(e)=>setfirstname(e.target.value)} type="text" placeholder="Enter First Name" />
@@ -93,7 +98,7 @@ const LoginSignup = () => {
         className="mb-3"
         >
 
-        <Tab eventKey="Login"  title="Login">
+        <Tab eventKey="Login" title="Login">
           <Login />
         </Tab>
 

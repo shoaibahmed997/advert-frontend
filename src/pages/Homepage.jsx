@@ -6,8 +6,6 @@ import Hero from '../components/Hero'
 
 const Homepage = () => {
   return (<>
-    <Header />
-    
     <Hero />
   </>
   )

@@ -3,17 +3,20 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  let navigate = useNavigate()
   return (
     <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark">
     <Container>
-      <Navbar.Brand >Equibbler</Navbar.Brand>
+      <Navbar.Brand onClick={()=>{navigate("/")}} >Equibbler</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link >About</Nav.Link>
-          <Nav.Link >Pricing</Nav.Link>
+          <Nav.Link >Create post</Nav.Link>
+          <Nav.Link >Search</Nav.Link>
+          <Nav.Link >filter</Nav.Link>
           <NavDropdown title="Categories" id="collasible-nav-dropdown">
             <NavDropdown.Item >Properties</NavDropdown.Item>
             <NavDropdown.Item >Automobiles</NavDropdown.Item>
@@ -25,7 +28,7 @@ const Header = () => {
           </NavDropdown>
         </Nav>
         <Nav>
-          <Nav.Link >Log In</Nav.Link>
+          <Nav.Link onClick={()=>{navigate("/login")}} > Log In</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Container>
