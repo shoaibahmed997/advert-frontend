@@ -7,6 +7,7 @@ import Post from './pages/Post';
 import Layout from './helper/Layout';
 import Auth from './helper/Auth';
 import Category from './pages/Category';
+import CreatePost from './pages/CreatePost';
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
 
           {/* protected routes starts here */}
           <Route element={<Auth />}>
-
+          <Route path='/create-post' element={<CreatePost />} />
           </Route>
           {/* protected routes ends here */}
         </Route>

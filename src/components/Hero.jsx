@@ -3,27 +3,31 @@ import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import baseurl from '../baseurl'
 
 
-const Hero = () => {
+const Hero = ({data}) => {
     let navigate = useNavigate()
     let location = useLocation()
+    let dispatch = useDispatch()
     
-    const handlenav = (id)=>{
+    const handlenav = (id,item)=>{
+        dispatch({type:"SELECT_POST",payload:item})
         navigate(`/posts/${id}`,{state:{from:location}})    
     }
 
   return (<div className='p-2'>
     <Row xs={2} sm={2}  md={4} lg={4} xl={8} xxl={10} className="g-2">
-    {Array.from({ length: 10 }).map((_, idx) => (
-        <Col key={idx}>
-        <Card onClick={()=>handlenav(idx)} className='hover:cursor-pointer'>
-          <Card.Img variant="top" className='w-48 h-48' src="https://media.istockphoto.com/photos/taj-mahal-mausoleum-in-agra-picture-id1146517111?k=20&m=1146517111&s=612x612&w=0&h=vHWfu6TE0R5rG6DJkV42Jxr49aEsLN0ML-ihvtim8kk=" />
+    {data.map((item,i) => (
+        <Col key={i}>
+        <Card onClick={()=>handlenav(item.ID,item)} className='hover:cursor-pointer'>
+          <Card.Img variant="top" className='w-48 h-48' src={baseurl+item.Images[0].Imgpath} />
           <Card.Body>
-            <Card.Title>Card title</Card.Title>
+            <Card.Title>${item?.Price.toLocaleString({currency:"USD",currencyDisplay:"dollar"})}</Card.Title>
             <Card.Text>
-              This is a longer card with supporting text 
+             {item.Title}
             </Card.Text>
           </Card.Body>
         </Card>
@@ -31,7 +35,7 @@ const Hero = () => {
     ))}
   </Row>
   <div className='flex justify-center'>
-        <Button className="mt-2" >Load more</Button>
+        {/* <Button className="mt-2" >Load more</Button> */}
   </div>
     </div>
   )

@@ -21,7 +21,7 @@ const Login = ()=>{
 
   const handleSubmit = async(e)=>{
     e.preventDefault()
-    const req = await fetch(`${baseurl}/login`,{
+    const req = await fetch(`${baseurl}/api/login`,{
       method:'POST',
       headers:{'Content-Type':"application/json"},
       body:JSON.stringify({email,password})
@@ -82,7 +82,7 @@ const Signup = ()=>{
 
   const handleSubmit = async(e)=>{
     e.preventDefault()
-    const req = await fetch(`${baseurl}/signup`,{
+    const req = await fetch(`${baseurl}/api/signup`,{
       method:'POST',
       headers:{'Content-Type':"application/json"},
       body:JSON.stringify({firstname,lastname,email,password})

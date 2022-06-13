@@ -20,7 +20,7 @@ const Header = () => {
         <Nav className="me-auto">
           {
             loggedIn &&
-            <Nav.Link >Create post</Nav.Link>
+            <Nav.Link onClick={()=>{navigate("/create-post")}} >Create post</Nav.Link>
           }
           {/* <Nav.Link >filter</Nav.Link> */}
           <NavDropdown title="Categories" id="collasible-nav-dropdown">
@@ -30,6 +30,7 @@ const Header = () => {
             <NavDropdown.Item onClick={()=>{navigate("/category/mobiles")}} >Mobile</NavDropdown.Item>
             <NavDropdown.Item onClick={()=>{navigate("/category/services")}} >Services</NavDropdown.Item>
             <NavDropdown.Item onClick={()=>{navigate("/category/business")}} >Business</NavDropdown.Item>
+            <NavDropdown.Item onClick={()=>{navigate("/category/miscellaneous")}} >Miscellaneous</NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Nav>

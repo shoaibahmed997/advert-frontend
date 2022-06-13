@@ -30,12 +30,12 @@ export const UserTokenReducer = createReducer(TokenInitialState,{
 
 
 
-export const  CurrentPostReducer = createReducer({CurrentPostState:{}},{
+export const  CurrentPostReducer = createReducer({CurrentPostState:{post:{}}},{
     "SELECT_POST" : (state,action)=>{
-        state.CurrentPostState = action.payload
+        state.post = action.payload
     },
     "DESELECT_POST" : (state)=>{
-        state.CurrentPostState = {}
+        state.post = {}
     }
 })
 
