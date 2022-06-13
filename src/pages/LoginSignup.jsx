@@ -4,30 +4,62 @@ import Form from 'react-bootstrap/Form';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import baseurl from '../baseurl';
+import Swal from 'sweetalert2';
+import { useDispatch } from 'react-redux';
+
+
+
 
 
 const Login = ()=>{
   const [email,setemail]  = useState("")
   const [password,setpassword]  = useState("")
   let navigate  = useNavigate()
-  const handleSubmit = (e)=>{
+  let dispatch = useDispatch()
+
+  const handleSubmit = async(e)=>{
     e.preventDefault()
-    navigate('/')
-    
-}
+    const req = await fetch(`${baseurl}/login`,{
+      method:'POST',
+      headers:{'Content-Type':"application/json"},
+      body:JSON.stringify({email,password})
+    })
+  
+    const res = await req.json()
+    console.log(res)
+  
+    if (res?.success){
+      localStorage.setItem("AdvertApptoken",res.token)
+      dispatch({type:"ADD_TOKEN",payload:res.token})
+      dispatch({type:"ADD_USER",payload:res.user})
+
+      navigate('/')
+    }else{
+       Swal.fire({
+         icon:"error",
+         title:`Loin Failed`,
+         text:res.error
+         
+       })
+    }
+  
+  }
+
+
 
   return (
         <Form onSubmit={handleSubmit} className='w-80 bg-slate-50 p-6 drop-shadow-lg'>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control value={email} onChange={(e)=>setemail(e.target.value)} type="email" placeholder="Enter email" />
+              <Form.Control value={email} onChange={(e)=>setemail(e.target.value)} type="email" placeholder="Enter email" required />
               <Form.Text className="text-muted">
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control value={password} onChange={(e)=>setpassword(e.target.value)} type="password" placeholder="Password" />
+              <Form.Control value={password} onChange={(e)=>setpassword(e.target.value)} type="password" placeholder="Password" required />
             </Form.Group>
             <Button variant="success" type="submit">
               Log in
@@ -45,37 +77,59 @@ const Signup = ()=>{
   const [lastname,setlastname]  = useState("")
   const [email,setemail]  = useState("")
   const [password,setpassword]  = useState("")
+  let navigate = useNavigate()
+  let dispatch = useDispatch()
 
   const handleSubmit = async(e)=>{
     e.preventDefault()
-    
-    
-    
-}
+    const req = await fetch(`${baseurl}/signup`,{
+      method:'POST',
+      headers:{'Content-Type':"application/json"},
+      body:JSON.stringify({firstname,lastname,email,password})
+    })
+  
+    const res = await req.json()
+    console.log(res)
+  
+    if (res?.success){
+      localStorage.setItem("AdvertApptoken",res.token)
+      dispatch({type:"ADD_TOKEN",payload:res.token})
+      dispatch({type:"ADD_USER",payload:res.user})
+      navigate('/')
+    }else{
+       Swal.fire({
+         icon:"error",
+         title:`Sign Up failed`,
+         text:res.error
+         
+       })
+    }
+  
+  }
 
 return (
   <Form onSubmit={handleSubmit} className='w-80 bg-slate-50 p-6 drop-shadow-lg'>
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>First Name</Form.Label>
-    <Form.Control value={firstname} onChange={(e)=>setfirstname(e.target.value)} type="text" placeholder="Enter First Name" />
+    <Form.Control value={firstname} onChange={(e)=>setfirstname(e.target.value)} type="text" placeholder="Enter First Name" required />
     <Form.Text className="text-muted">
     </Form.Text>
   </Form.Group>
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Last Name</Form.Label>
-    <Form.Control value={lastname} onChange={(e)=>setlastname(e.target.value)} type="text" placeholder="Enter Last Name" />
+    <Form.Control value={lastname} onChange={(e)=>setlastname(e.target.value)} type="text" placeholder="Enter Last Name" required />
     <Form.Text className="text-muted">
     </Form.Text>
   </Form.Group>
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Email address</Form.Label>
-    <Form.Control value={email} onChange={(e)=>setemail(e.target.value)} type="email" placeholder="Enter email" />
+    <Form.Control value={email} onChange={(e)=>setemail(e.target.value)} type="email" placeholder="Enter email" required />
     <Form.Text className="text-muted">
     </Form.Text>
   </Form.Group>
   <Form.Group className="mb-3" controlId="formBasicPassword">
     <Form.Label>Password</Form.Label>
-    <Form.Control value={password} onChange={(e)=>setpassword(e.target.value)} type="password" placeholder="Password" />
+    <Form.Control value={password} onChange={(e)=>setpassword(e.target.value)} type="password" placeholder="Password" required />
   </Form.Group>
   <Button variant="primary" type="submit">
     Signup

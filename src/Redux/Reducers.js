@@ -1,11 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialUserState = {
-    user : JSON.parse(localStorage.getItem('AdvertAppUser')) || {}
+    user :  {}
 }
 
 const TokenInitialState = {
-    token : localStorage.getItem("AdvertApptoken") || {}
+    token : localStorage.getItem("AdvertApptoken") || ""
 }
 
 export const UserReducer = createReducer(initialUserState,{

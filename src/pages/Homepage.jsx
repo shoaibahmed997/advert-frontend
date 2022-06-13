@@ -1,10 +1,13 @@
 import React from 'react'
-import Header from '../components/Header'
+import baseurl from '../baseurl'
 import Hero from '../components/Hero'
 
-
+const fetchData = async()=>{
+    return await fetch(`${baseurl}/api/posts`)
+}
 
 const Homepage = () => {
+  
   return (<>
     <Hero />
   </>

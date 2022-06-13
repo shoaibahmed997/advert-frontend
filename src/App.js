@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import LoginSignup from './pages/LoginSignup';
 import Post from './pages/Post';
 import Layout from './helper/Layout';
+import Auth from './helper/Auth';
+import Category from './pages/Category';
 
 
 function App() {
@@ -17,6 +19,14 @@ function App() {
           <Route path='/login' element={<LoginSignup />} />
           <Route path='/signup' element={<LoginSignup />} />
           <Route path='/posts/:id' element={<Post />} />
+          <Route path='/category/:category' element={<Category />} />
+
+
+          {/* protected routes starts here */}
+          <Route element={<Auth />}>
+
+          </Route>
+          {/* protected routes ends here */}
         </Route>
 
       </Routes>

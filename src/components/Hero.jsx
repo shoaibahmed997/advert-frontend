@@ -11,8 +11,7 @@ const Hero = () => {
     let location = useLocation()
     
     const handlenav = (id)=>{
-        navigate(`/posts/${id}`,{state:{from:location}})
-        
+        navigate(`/posts/${id}`,{state:{from:location}})    
     }
 
   return (<div className='p-2'>
