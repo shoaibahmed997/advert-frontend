@@ -16,7 +16,7 @@ const geoUrl =
     );
   };
 
-const Map = ({coords}) => (
+const Map = ({coords,location}) => (
   <div>
     <ComposableMap>
     <CustomZoomableGroup center={[5, -10]} zoom={1}>
@@ -34,7 +34,7 @@ const Map = ({coords}) => (
                         <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
                     </g>
                     <text textAnchor="middle" y={-25} style={{ fontFamily: "system-ui", fill: "#ffffff" }}>
-                        Dharamshala
+                        {location}
                     </text>
                 </Marker>
             </>

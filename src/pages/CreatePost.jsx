@@ -41,7 +41,7 @@ const CreatePost = () => {
             })
             const res = await req.json()
             if (res.success){
-                Swal.fire({icon:"success",title:"Ad Posted",timer:1600})
+                Swal.fire({icon:"success",title:"Ad Posted",text:"Your Ad will be Shortly Live",timer:1600})
             }else{
                 Swal.fire({icon:"error",title:"Error Posting your ad",text:res.error})
             }

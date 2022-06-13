@@ -11,6 +11,13 @@ import { FaUserCircle } from 'react-icons/fa';
 const Header = () => {
   let navigate = useNavigate()
   const loggedIn = useLogin()
+  const [searchterm,setsearchterm] = React.useState("")
+  const handleSearch = (e)=>{
+    e.preventDefault()
+    if (searchterm.trim === "") return
+    navigate(`/search/${searchterm}`)
+    
+  }
   return (
     <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark">
     <Container>
@@ -24,24 +31,27 @@ const Header = () => {
           }
           {/* <Nav.Link >filter</Nav.Link> */}
           <NavDropdown title="Categories" id="collasible-nav-dropdown">
-            <NavDropdown.Item onClick={()=>{navigate("/category/properties")}} >Properties</NavDropdown.Item>
-            <NavDropdown.Item onClick={()=>{navigate("/category/cars")}} >Cars</NavDropdown.Item>
-            <NavDropdown.Item onClick={()=>{navigate("/category/bikes")}} >Bikes</NavDropdown.Item>
-            <NavDropdown.Item onClick={()=>{navigate("/category/mobiles")}} >Mobile</NavDropdown.Item>
-            <NavDropdown.Item onClick={()=>{navigate("/category/services")}} >Services</NavDropdown.Item>
-            <NavDropdown.Item onClick={()=>{navigate("/category/business")}} >Business</NavDropdown.Item>
-            <NavDropdown.Item onClick={()=>{navigate("/category/miscellaneous")}} >Miscellaneous</NavDropdown.Item>
+            <NavDropdown.Item onClick={()=>{navigate("/category/Property")}} >Property</NavDropdown.Item>
+            <NavDropdown.Item onClick={()=>{navigate("/category/Cars")}} >Cars</NavDropdown.Item>
+            <NavDropdown.Item onClick={()=>{navigate("/category/Bikes")}} >Bikes</NavDropdown.Item>
+            <NavDropdown.Item onClick={()=>{navigate("/category/Electronics")}} >Electronics</NavDropdown.Item>
+            <NavDropdown.Item onClick={()=>{navigate("/category/Services")}} >Services</NavDropdown.Item>
+            <NavDropdown.Item onClick={()=>{navigate("/category/Business")}} >Business</NavDropdown.Item>
+            <NavDropdown.Item onClick={()=>{navigate("/category/Jobs")}} >Jobs</NavDropdown.Item>
+            <NavDropdown.Item onClick={()=>{navigate("/category/Miscellaneous")}} >Miscellaneous</NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Nav>
-        <Form className="d-flex">
+        <Form onSubmit={handleSearch} className="d-flex">
                   <Form.Control
                     type="search"
                     placeholder="Search"
                     className="me-2"
                     aria-label="Search"
+                    value={searchterm}
+                    onChange={(e)=>setsearchterm(e.target.value)}
                   />
-                  <Button variant="outline-success">Search</Button>
+                  <Button type='submit' variant="outline-success">Search</Button>
                 </Form>
                 {
                   loggedIn ? <Nav.Link><FaUserCircle fontSize={30} color='white' /></Nav.Link> :

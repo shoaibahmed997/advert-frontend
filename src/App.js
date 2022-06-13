@@ -8,6 +8,7 @@ import Layout from './helper/Layout';
 import Auth from './helper/Auth';
 import Category from './pages/Category';
 import CreatePost from './pages/CreatePost';
+import Search from './pages/Search';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path='/signup' element={<LoginSignup />} />
           <Route path='/posts/:id' element={<Post />} />
           <Route path='/category/:category' element={<Category />} />
+          <Route path='/search/:searchterm' element={<Search />} />
 
 
           {/* protected routes starts here */}

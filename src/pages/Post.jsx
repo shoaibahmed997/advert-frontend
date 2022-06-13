@@ -46,7 +46,7 @@ if (!post?.ID){
         <img className='border-2 border-l-violet-400 border-r-purple-300 border-t-pink-400 border-b-fuchsia-500 rounded-full drop-shadow-2xl' height={"80px"} width={"80px"}  src="/male.png" alt="" />
         <div>
             <div className='mt-2'>Ad Posted by</div>
-            <div><Badge className='mt-2 p-2' pill={true}>Shoaib Ahmed</Badge></div>
+            <div><Badge className='mt-2 p-2' pill={true}>{post.By}</Badge></div>
         </div>
     </div>
     <hr />
@@ -62,7 +62,7 @@ if (!post?.ID){
 
         <hr />
         <div className=' w-full h-[250px] lg:h-[500px] border-2 border-l-violet-400 border-r-purple-300 border-t-pink-400 border-b-fuchsia-500 overflow-scroll'>
-            <Map coords={[post.Longitude,post.Lattitude]} />
+            <Map coords={[post.Longitude,post.Lattitude]} location={post.Location} />
         </div>
         <hr />
   </div>
