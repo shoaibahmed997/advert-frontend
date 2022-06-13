@@ -23,7 +23,9 @@ const Homepage = () => {
 
   {isLoading ? <Loading /> :
     isError ? <h1>Error Fetching Data</h1>:
-    <Hero data={data.data} />
+    data?.data ?
+    <Hero data={data.data} />:
+    <h1>No Data!</h1>
   }
   </>
   )

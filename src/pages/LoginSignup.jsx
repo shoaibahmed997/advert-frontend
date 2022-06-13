@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { motion } from 'framer-motion';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import baseurl from '../baseurl';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';

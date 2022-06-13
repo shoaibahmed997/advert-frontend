@@ -62,7 +62,7 @@ if (!post?.ID){
 
         <hr />
         <div className=' w-full h-[250px] lg:h-[500px] border-2 border-l-violet-400 border-r-purple-300 border-t-pink-400 border-b-fuchsia-500 overflow-scroll'>
-            <Map coords={[76.3242743,32.2240511]} />
+            <Map coords={[post.Longitude,post.Lattitude]} />
         </div>
         <hr />
   </div>
