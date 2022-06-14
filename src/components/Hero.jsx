@@ -1,39 +1,52 @@
-import React from 'react'
+import { Reorder, useDragControls } from 'framer-motion';
+import React, { useState } from 'react'
 import { Card,Col,Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import baseurl from '../baseurl'
 
+const RItem = ({item})=>{
+  let navigate = useNavigate()
+  let location = useLocation()
+  let dispatch = useDispatch()
+ 
+  
+  const handlenav = (id,item)=>{
+      dispatch({type:"SELECT_POST",payload:item})
+      navigate(`/posts/${id}`,{state:{from:location}})    
+  }
+  const dragcontrols = useDragControls()
 
-const Hero = ({data}) => {
-    let navigate = useNavigate()
-    let location = useLocation()
-    let dispatch = useDispatch()
-    
-    const handlenav = (id,item)=>{
-        dispatch({type:"SELECT_POST",payload:item})
-        navigate(`/posts/${id}`,{state:{from:location}})    
-    }
 
-  return (<div className='p-2'>
-    <Row xs={2} sm={2}  md={4} lg={4} xl={8} xxl={10} className="g-2">
-    {data.map((item,i) => (
-        <Col key={i}>
-        <Card onClick={()=>handlenav(item.ID,item)} className='hover:cursor-pointer'>
-          <Card.Img variant="top" className='w-48 h-48' src={baseurl+item.Images[0].Imgpath} />
+  return(
+    <Reorder.Item as='div' dragListener={false}  id={item} value={item} dragControls={dragcontrols} >
+          <Card  className='hover:cursor-pointer'>
+          <Card.Img onClick={()=>handlenav(item.ID,item)} variant="top" className='w-48 h-48' src={baseurl+item.Images[0].Imgpath} />
           <Card.Body>
-            <Card.Title>${item?.Price.toLocaleString({currency:"USD",currencyDisplay:"dollar"})}</Card.Title>
+            <Card.Title>${item?.Price.toLocaleString({currency:"USD",currencyDisplay:"dollar"})} </Card.Title>
             <Card.Text>
-             {item.Title}
+            {item.Title}
             </Card.Text>
+            <div onPointerDown={e=>dragcontrols.start(e)} className='h-6 w-6 bg-blue-400 ml-6 rounded-full'></div>
           </Card.Body>
         </Card>
-      </Col>
-    ))}
-  </Row>
-  <div className='flex justify-center'>
-        {/* <Button className="mt-2" >Load more</Button> */}
-  </div>
+      </Reorder.Item>
+  )
+}
+
+const Hero = ({data}) => {
+  let [elements,setelements] = useState(data)
+  const variant = {
+    transition :{type:'spring',duration:.7 }
+  }
+
+  return (<div className='p-2'>
+    <Reorder.Group variants={variant} transition={"transition"} axis='x' as='div' values={elements} onReorder={setelements} className="grid grid-cols-4 gap-4" >
+    {elements.map((item,i)=>(
+      <RItem item={item} key={i} />
+
+      ))}
+      </Reorder.Group>
     </div>
   )
 }
