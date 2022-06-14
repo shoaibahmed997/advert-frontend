@@ -12,10 +12,13 @@ const Header = () => {
   let navigate = useNavigate()
   const loggedIn = useLogin()
   const [searchterm,setsearchterm] = React.useState("")
+
   const handleSearch = (e)=>{
     e.preventDefault()
-    if (searchterm.trim === "") return
-    navigate(`/search/${searchterm}`)
+    if (searchterm.trim() === "" || !searchterm) return
+      navigate(`/search/${searchterm}`)
+
+    console.log(searchterm.trim === "")
     
   }
   return (
