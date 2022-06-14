@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter,Route,Routes} from 'react-router-dom'
+import {Route,Routes, useLocation} from 'react-router-dom'
 import Homepage from './pages/Homepage';
 import "bootstrap/dist/css/bootstrap.min.css"
 import LoginSignup from './pages/LoginSignup';
@@ -9,12 +9,15 @@ import Auth from './helper/Auth';
 import Category from './pages/Category';
 import CreatePost from './pages/CreatePost';
 import Search from './pages/Search';
+import UserPage from './pages/UserPage';
+import { AnimatePresence } from 'framer-motion';
 
 
 function App() {
+  const location = useLocation()
   return (
-    <BrowserRouter>
-      <Routes>
+    <AnimatePresence exitBeforeEnter>
+      <Routes key={location.pathname} location={location}>
         <Route element={<Layout />}>
 
           <Route path='/' element={<Homepage />} />
@@ -28,12 +31,12 @@ function App() {
           {/* protected routes starts here */}
           <Route element={<Auth />}>
           <Route path='/create-post' element={<CreatePost />} />
+          <Route path='/user' element={<UserPage />} />
           </Route>
           {/* protected routes ends here */}
         </Route>
-
       </Routes>
-    </BrowserRouter>
+      </AnimatePresence>
   );
 }
 

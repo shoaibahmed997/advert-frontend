@@ -7,18 +7,18 @@ import {Form,Button} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import useLogin from '../Hooks/useLogin';
 import { FaUserCircle } from 'react-icons/fa';
+import {motion} from "framer-motion"
 
 const Header = () => {
   let navigate = useNavigate()
   const loggedIn = useLogin()
   const [searchterm,setsearchterm] = React.useState("")
 
+
   const handleSearch = (e)=>{
     e.preventDefault()
     if (searchterm.trim() === "" || !searchterm) return
       navigate(`/search/${searchterm}`)
-
-    console.log(searchterm.trim === "")
     
   }
   return (
@@ -57,8 +57,9 @@ const Header = () => {
                   <Button type='submit' variant="outline-success">Search</Button>
                 </Form>
                 {
-                  loggedIn ? <Nav.Link><FaUserCircle fontSize={30} color='white' /></Nav.Link> :
-                  <Nav.Link onClick={()=>{navigate("/login")}} > Log In</Nav.Link>
+                  loggedIn ? 
+                  (<Nav.Link onClick={()=>navigate('/user')} ><FaUserCircle fontSize={30} color='white' /> </Nav.Link>):
+                  ( <Nav.Link onClick={()=>{navigate("/login")}} >Log In</Nav.Link>)
                 }
         </Nav>
       </Navbar.Collapse>

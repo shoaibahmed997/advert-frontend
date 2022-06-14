@@ -6,6 +6,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
 import { QueryClientProvider,QueryClient } from 'react-query';
+import { BrowserRouter } from 'react-router-dom';
 
 const queryClient = new QueryClient()
 
@@ -17,7 +18,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
     </QueryClientProvider>
   </React.StrictMode>
