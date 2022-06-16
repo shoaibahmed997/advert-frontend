@@ -8,6 +8,7 @@ import Loading from '../helper/Loading'
 import useAuth from '../Hooks/useAuth'
 import PostbyUser from '../components/PostbyUser'
 import ChangePassword from '../components/ChangePassword'
+import DeleteAccount from '../components/DeleteAccount'
 
 const fetchPostbyuser = async({queryKey})=>{
     const email = queryKey[1]
@@ -20,6 +21,7 @@ const fetchPostbyuser = async({queryKey})=>{
 const UserPage = () => {
 
     const [showChangePassword,setshowChangePassword] = React.useState(false)
+    const [showDeleteUser,setshowDeleteUser] = React.useState(false)
 
     const user = useAuth()
     const [selectAnimation,setSelectAnimation]  = React.useState(1)
@@ -72,9 +74,12 @@ const UserPage = () => {
           <div className='flex flex-col gap-4 mt-4 w-96'>
               <Button onClick={()=>setshowChangePassword(!showChangePassword)} variant="primary">Change Password</Button>
               {showChangePassword && (
-                  <ChangePassword />
+                    <ChangePassword />
               )}
-              <Button variant="danger">Delete Account</Button>
+              <Button onClick={()=>setshowDeleteUser(!showDeleteUser)} variant="danger">Delete Account</Button>
+              {showDeleteUser && 
+                    <DeleteAccount />
+              }
           </div>
         </Tab.Pane>
         <Tab.Pane eventKey="third">
