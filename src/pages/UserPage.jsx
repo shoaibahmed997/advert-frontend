@@ -2,12 +2,12 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Tab,Row,Nav, Col,Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import Hero from '../components/Hero'
 import baseurl from '../baseurl'
 import { useQuery } from 'react-query'
 import Loading from '../helper/Loading'
 import useAuth from '../Hooks/useAuth'
 import PostbyUser from '../components/PostbyUser'
+import ChangePassword from '../components/ChangePassword'
 
 const fetchPostbyuser = async({queryKey})=>{
     const email = queryKey[1]
@@ -16,7 +16,11 @@ const fetchPostbyuser = async({queryKey})=>{
     return res
 }
 
+
 const UserPage = () => {
+
+    const [showChangePassword,setshowChangePassword] = React.useState(false)
+
     const user = useAuth()
     const [selectAnimation,setSelectAnimation]  = React.useState(1)
     const variant = {
@@ -28,7 +32,7 @@ const UserPage = () => {
         animate:{scale:[1,1,0.8,1],x:[-200,0,400],opacity:[0,1,0]},
       }
 
-    const {data,isLoading,isError} = useQuery(["userposts",user.Email],fetchPostbyuser,{
+    const {data,isLoading,isError,refetch} = useQuery(["userposts",user.Email],fetchPostbyuser,{
         refetchOnWindowFocus:false,
         staleTime:120000
     })
@@ -58,7 +62,7 @@ const UserPage = () => {
             <div>
                 {isLoading ? <Loading /> :
                 isError ? <h1>Error Fetching Data</h1>:
-                data?.data ? <PostbyUser data={data.data} />:
+                data?.data ? <PostbyUser refetch={refetch} data={data.data} />:
                 <h1>No ad posted by you! <br />Post one <Link to='/create-post'>now</Link></h1>
                 }
             </div>
@@ -66,7 +70,10 @@ const UserPage = () => {
         </Tab.Pane>
         <Tab.Pane eventKey="second">
           <div className='flex flex-col gap-4 mt-4 w-96'>
-              <Button variant="primary">Change Password</Button>
+              <Button onClick={()=>setshowChangePassword(!showChangePassword)} variant="primary">Change Password</Button>
+              {showChangePassword && (
+                  <ChangePassword />
+              )}
               <Button variant="danger">Delete Account</Button>
           </div>
         </Tab.Pane>

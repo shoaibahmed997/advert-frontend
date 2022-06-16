@@ -4,22 +4,39 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import baseurl from '../baseurl'
+import useToken from '../Hooks/useToken'
 
 
-const PostbyUser = ({data}) => {
+const PostbyUser = ({data,refetch}) => {
+
     let navigate = useNavigate()
     let location = useLocation()
     let dispatch = useDispatch()
-    
+    const token = useToken()
     const handlenav = (id,item)=>{
         dispatch({type:"SELECT_POST",payload:item})
         navigate(`/posts/${id}`,{state:{from:location}})    
+    }
+    const deletefetchRequest = async(id)=>{
+        const req = await fetch(baseurl+"/api/deletepost/"+id,{headers:{token:token}})
+        const res=await req.json()
+        if (res.success){
+            Swal.fire({icon:"success",title:res.data})
+            refetch()
+        }else{
+            Swal.fire({icon:"error",title:res.error})
+        }
+        
     }
     const deleteAd = (id)=>{
         Swal.fire({icon:"question",title:"Are you sure you want to delete this ad",
         text:"Action can't be reverted",
         showCancelButton:true,
         showConfirmButton:true,confirmButtonText:"Yes Delete It!",confirmButtonColor:'#d33'
+    }).then(res=>{
+        if (res.isConfirmed){
+            deletefetchRequest(id)
+        }
     })
     }
 
@@ -34,9 +51,10 @@ const PostbyUser = ({data}) => {
             <Card.Text>
              {item.Title}
             </Card.Text>
-            <Button onClick={()=>handlenav(item.ID,item)}>View</Button>
-            <Button variant='warning'>Update</Button>
-            <Button onClick={()=>deleteAd(item.ID)} variant='danger'>Delete</Button>
+            <div className='grid gap-2'>
+                <Button onClick={()=>handlenav(item.ID,item)}>View</Button>
+                <Button onClick={()=>deleteAd(item.ID)} variant='danger'>Delete</Button>
+            </div>
           </Card.Body>
         </Card>
       </Col>

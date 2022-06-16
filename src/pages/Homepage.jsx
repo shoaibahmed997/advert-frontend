@@ -17,7 +17,6 @@ const Homepage = () => {
   const {isLoading,isError,data}  = useQuery("homepage",fetchData,{
     refetchOnWindowFocus:false
   })
-  console.log(data)
 
   return (<>
 
