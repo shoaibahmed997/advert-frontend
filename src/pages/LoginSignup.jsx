@@ -51,13 +51,13 @@ const Login = ()=>{
 
   return (
         <Form onSubmit={handleSubmit} className='w-80 bg-slate-50 p-6 drop-shadow-lg'>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="formLoginEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control value={email} onChange={(e)=>setemail(e.target.value)} type="email" placeholder="Enter email" required />
               <Form.Text className="text-muted">
               </Form.Text>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="formLoginPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control value={password} onChange={(e)=>setpassword(e.target.value)} type="password" placeholder="Password" required />
             </Form.Group>
@@ -110,25 +110,25 @@ const Signup = ()=>{
 
 return (
   <Form onSubmit={handleSubmit} className='w-80 bg-slate-50 p-6 drop-shadow-lg'>
-  <Form.Group className="mb-3" controlId="formBasicEmail">
+  <Form.Group className="mb-3" controlId="formsignupFirstname">
     <Form.Label>First Name</Form.Label>
     <Form.Control value={firstname} onChange={(e)=>setfirstname(e.target.value)} type="text" placeholder="Enter First Name" required />
     <Form.Text className="text-muted">
     </Form.Text>
   </Form.Group>
-  <Form.Group className="mb-3" controlId="formBasicEmail">
+  <Form.Group className="mb-3" controlId="formsignupLastname">
     <Form.Label>Last Name</Form.Label>
     <Form.Control value={lastname} onChange={(e)=>setlastname(e.target.value)} type="text" placeholder="Enter Last Name" required />
     <Form.Text className="text-muted">
     </Form.Text>
   </Form.Group>
-  <Form.Group className="mb-3" controlId="formBasicEmail">
+  <Form.Group className="mb-3" controlId="formsignupEmail">
     <Form.Label>Email address</Form.Label>
     <Form.Control value={email} onChange={(e)=>setemail(e.target.value)} type="email" placeholder="Enter email" required />
     <Form.Text className="text-muted">
     </Form.Text>
   </Form.Group>
-  <Form.Group className="mb-3" controlId="formBasicPassword">
+  <Form.Group className="mb-3" controlId="formsignupPassword">
     <Form.Label>Password</Form.Label>
     <Form.Control value={password} onChange={(e)=>setpassword(e.target.value)} type="password" placeholder="Password" required />
   </Form.Group>

@@ -24,7 +24,6 @@ const UserPage = () => {
 
     const [showChangePassword,setshowChangePassword] = useState(false)
     const [showDeleteUser,setshowDeleteUser] = useState(false)
-    const [triggerLogout,setlogout] = useState(false)
     const user = useAuth()
     const [selectAnimation,setSelectAnimation]  = useState(1)
     const variant = {
