@@ -3,7 +3,7 @@ import { Carousel,Badge,Button } from 'react-bootstrap'
 import {MdLocationPin} from 'react-icons/md'
 import {BiMailSend} from 'react-icons/bi'
 import {FaUserCircle} from 'react-icons/fa'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import Map from '../components/Map'
 import usePost from '../Hooks/usePost'
 import baseurl from '../baseurl'
@@ -57,8 +57,8 @@ if (!post?.ID){
             <div className='text-lg lg:text-xl'><span className='font-semibold'>Category</span> : {post?.Category}</div>
             <div className='text-lg lg:text-xl'><span className='font-semibold'>Posted On</span> : {post?.CreatedAt} </div>
             <div className='text-lg lg:text-xl'><span className='font-semibold'>AD ID</span> : {post.ID}</div>
-            <div ><Button className='flex'><BiMailSend /> Send Inquiry</Button></div>
-
+            {/* <div ><a href={`mailto:${post.UserEmail}`} className='flex rounded-lg bg-pink-800 w-40 justify-center items-center'><BiMailSend /> Send Inquiry</a></div> */}
+            <div ><Button href={`mailto:${post.UserEmail}`} className='flex '><BiMailSend /> Send Inquiry</Button></div>
         </div>
 
         <hr />
