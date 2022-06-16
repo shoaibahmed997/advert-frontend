@@ -21,7 +21,7 @@ const Layout = () => {
     <div>
       <Header />
 
-    <motion.div variants={animationType ===1 ? variant : animationType===2 ? variant2: variant } initial="initial" animate="animate" exit="exit" transition={{type:"spring",duration:.50}} >
+    <motion.div variants={animationType === "1" ? variant : animationType === "2" ? variant2: variant } initial="initial" animate="animate" exit="exit" transition={{type:"spring",duration:.50}} >
 
       <Outlet />
     </motion.div>
