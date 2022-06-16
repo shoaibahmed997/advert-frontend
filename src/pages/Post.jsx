@@ -53,7 +53,7 @@ if (!post?.ID){
     <hr />
     <div className='text-xl font-semibold lg:text-2xl'>Details</div>
         <div className='p-8 flex flex-col gap-4'>
-            <div className='text-lg lg:text-xl flex whitespace-pre  '><span className='font-semibold'>Description</span> :<span> {post?.Desc} </span></div>
+            <div className='text-lg lg:text-xl flex whitespace-pre-wrap  '><span className='font-semibold'>Description</span> :<span> {post?.Desc} </span></div>
             <div className='text-lg lg:text-xl'><span className='font-semibold'>Category</span> : {post?.Category}</div>
             <div className='text-lg lg:text-xl'><span className='font-semibold'>Posted On</span> : {post?.CreatedAt} </div>
             <div className='text-lg lg:text-xl'><span className='font-semibold'>AD ID</span> : {post.ID}</div>
