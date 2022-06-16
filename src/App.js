@@ -11,6 +11,7 @@ import CreatePost from './pages/CreatePost';
 import Search from './pages/Search';
 import UserPage from './pages/UserPage';
 import { AnimatePresence } from 'framer-motion';
+import NotFound from './pages/NotFound';
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
           <Route path='/user' element={<UserPage />} />
           </Route>
           {/* protected routes ends here */}
+
+          <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>
       </AnimatePresence>

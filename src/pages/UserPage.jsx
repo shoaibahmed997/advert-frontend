@@ -21,11 +21,13 @@ const fetchPostbyuser = async({queryKey})=>{
 
 
 const UserPage = () => {
-
     const [showChangePassword,setshowChangePassword] = useState(false)
     const [showDeleteUser,setshowDeleteUser] = useState(false)
     const user = useAuth()
     const [selectAnimation,setSelectAnimation]  = useState(1)
+
+    const style = localStorage.getItem("AdvertAppAnimation")
+
     const variant = {
         initial:{scale:0,opacity:0},
         animate:{scale:[0,1,4],opacity:[0,1,0]},
@@ -89,8 +91,9 @@ const UserPage = () => {
         <Tab.Pane eventKey="third">
             <div>
                 <h1>Animation Style </h1>
+                <h3>Current Style: style {style} </h3>
                 <div className='flex gap-4 p-2'>
-                    <div onClick={()=>setSelectAnimation(1)} className={selectAnimation===1? 'border-2 border-blue-600' :""} >
+                    <div onClick={()=>{setSelectAnimation(1);localStorage.setItem("AdvertAppAnimation",1)}} className={selectAnimation===1? 'border-2 border-blue-600' :""} >
                         <Card>
                             <div className='flex justify-center items-center w-full bg-orange-500 h-60'>
                                     <motion.div variants={variant} initial="initial" animate="animate" exit="exit" transition={{type:"spring",duration:2,repeat:Infinity}}
@@ -100,7 +103,7 @@ const UserPage = () => {
                             <Card.Text>The page grows to the fullest and new page arises out of thin air</Card.Text>
                         </Card>
                     </div>
-                    <div onClick={()=>setSelectAnimation(2)} className={selectAnimation===2? 'border-2 border-blue-600' :""}>
+                    <div onClick={()=>{setSelectAnimation(2);localStorage.setItem("AdvertAppAnimation",2)}} className={selectAnimation===2? 'border-2 border-blue-600' :""}>
                         <Card>
                             <div className='flex justify-center items-center w-full bg-orange-500 h-60'>
                                     <motion.div variants={variant2} initial="initial" animate="animate" exit="exit" transition={{type:"spring",duration:2,repeat:Infinity}}
