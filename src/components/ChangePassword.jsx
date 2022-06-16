@@ -1,6 +1,5 @@
 import React from 'react'
 import { Form,Button } from 'react-bootstrap'
-import { useMutation } from 'react-query'
 import Swal from 'sweetalert2'
 import baseurl from '../baseurl'
 import useToken from '../Hooks/useToken'

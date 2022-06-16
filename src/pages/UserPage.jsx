@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Tab,Row,Nav, Col,Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -9,6 +9,8 @@ import useAuth from '../Hooks/useAuth'
 import PostbyUser from '../components/PostbyUser'
 import ChangePassword from '../components/ChangePassword'
 import DeleteAccount from '../components/DeleteAccount'
+import logout from '../helper/logout'
+
 
 const fetchPostbyuser = async({queryKey})=>{
     const email = queryKey[1]
@@ -20,11 +22,11 @@ const fetchPostbyuser = async({queryKey})=>{
 
 const UserPage = () => {
 
-    const [showChangePassword,setshowChangePassword] = React.useState(false)
-    const [showDeleteUser,setshowDeleteUser] = React.useState(false)
-
+    const [showChangePassword,setshowChangePassword] = useState(false)
+    const [showDeleteUser,setshowDeleteUser] = useState(false)
+    const [triggerLogout,setlogout] = useState(false)
     const user = useAuth()
-    const [selectAnimation,setSelectAnimation]  = React.useState(1)
+    const [selectAnimation,setSelectAnimation]  = useState(1)
     const variant = {
         initial:{scale:0,opacity:0},
         animate:{scale:[0,1,4],opacity:[0,1,0]},
@@ -53,6 +55,9 @@ const UserPage = () => {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="third">Animation Settings</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="forth">Logout</Nav.Link>
         </Nav.Item>
       </Nav>
     </Col>
@@ -109,6 +114,9 @@ const UserPage = () => {
                 </div>
             </div>
 
+        </Tab.Pane>
+        <Tab.Pane eventKey="forth">
+              <Button onClick={()=>logout()} variant="danger">Logout</Button>
         </Tab.Pane>
       </Tab.Content>
     </Col>
