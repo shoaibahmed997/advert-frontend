@@ -2,6 +2,7 @@ import React from 'react'
 import { Carousel,Badge,Button } from 'react-bootstrap'
 import {MdLocationPin} from 'react-icons/md'
 import {BiMailSend} from 'react-icons/bi'
+import {FaUserCircle} from 'react-icons/fa'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import Map from '../components/Map'
 import usePost from '../Hooks/usePost'
@@ -43,7 +44,7 @@ if (!post?.ID){
     </div>
     <hr />
     <div className='flex gap-4'>
-        <img className='border-2 border-l-violet-400 border-r-purple-300 border-t-pink-400 border-b-fuchsia-500 rounded-full drop-shadow-2xl' height={"80px"} width={"80px"}  src="/male.png" alt="" />
+        <FaUserCircle fontSize={80} />
         <div>
             <div className='mt-2'>Ad Posted by</div>
             <div><Badge className='mt-2 p-2' pill={true}>{post.By}</Badge></div>
@@ -56,7 +57,7 @@ if (!post?.ID){
             <div className='text-lg lg:text-xl'><span className='font-semibold'>Category</span> : {post?.Category}</div>
             <div className='text-lg lg:text-xl'><span className='font-semibold'>Posted On</span> : {post?.CreatedAt} </div>
             <div className='text-lg lg:text-xl'><span className='font-semibold'>AD ID</span> : {post.ID}</div>
-            <div><Button className='flex'><BiMailSend /> Send Inquiry</Button></div>
+            <div ><Button className='flex'><BiMailSend /> Send Inquiry</Button></div>
 
         </div>
 

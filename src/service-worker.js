@@ -70,3 +70,29 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+let cacheData = 'AdvertAppV1';
+self.addEventListener('install',(event)=>{
+  event.waitUntil(caches.open(cacheData).then((cache)=>{
+      cache.addAll([
+          '/',
+          '/index.html',
+          '/static/js/bundle.js',
+          "/user",
+          "/login",
+          "/signup"
+          
+      ])
+  }))
+})
+
+self.addEventListener('fetch',(e)=>{
+  if (!navigator.onLine){
+      e.respondWith(caches.match(e.request).then(res=>{
+          if (res){
+              return res
+          }
+          // let urlRequested = e.request.clone()
+          // fetch(urlRequested)
+      }))
+  }
+})

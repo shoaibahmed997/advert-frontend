@@ -7,7 +7,6 @@ const Layout = () => {
   if (!animationType){
     localStorage.setItem("AdvertAppAnimation",1)
   }
-  console.log(animationType)
   const variant = {
     initial  : {scale:0,opacity:0},
     animate : {scale:[0,1],opacity:1},

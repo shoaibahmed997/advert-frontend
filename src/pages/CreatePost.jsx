@@ -10,7 +10,7 @@ const CreatePost = () => {
   const [isButtonLoading, setButtonLoading] = useState(false);
   const [title, settitle] = useState("");
   const [desc, setdesc] = useState("");
-  const [price, setprice] = useState();
+  const [price, setprice] = useState(0);
   const [category, setcategory] = useState("Property");
   const [location, setlocation] = useState("");
   const [files, setfiles] = useState();
