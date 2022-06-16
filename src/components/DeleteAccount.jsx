@@ -4,6 +4,7 @@ import useAuth from '../Hooks/useAuth'
 import baseurl from '../baseurl'
 import useToken from '../Hooks/useToken'
 import Swal from 'sweetalert2'
+import logout from '../helper/logout'
 
 const DeleteAccount = () => {
     const user  = useAuth()
@@ -14,7 +15,8 @@ const DeleteAccount = () => {
         const req = await fetch(baseurl+"/api/delete-account",{headers:{token}})
         const res = await req.json()
         if (res.success){
-            Swal.fire({icon:"success",title:res.data,text:"You too left us &#x1F622;"})
+            Swal.fire({icon:"success",title:res.data,text:"You too left us😭"})
+            logout()
         }else{
             Swal.fire({icon:"error",title:res["error type"]})
         }

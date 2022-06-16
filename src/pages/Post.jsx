@@ -44,7 +44,7 @@ if (!post?.ID){
     </div>
     <hr />
     <div className='flex gap-4'>
-        <FaUserCircle fontSize={80} />
+        <FaUserCircle className='border-2 border-l-violet-400 border-r-purple-300 border-t-pink-400 border-b-fuchsia-500 rounded-full drop-shadow-2xl' fontSize={80} />
         <div>
             <div className='mt-2'>Ad Posted by</div>
             <div><Badge className='mt-2 p-2' pill={true}>{post.By}</Badge></div>
@@ -57,8 +57,7 @@ if (!post?.ID){
             <div className='text-lg lg:text-xl'><span className='font-semibold'>Category</span> : {post?.Category}</div>
             <div className='text-lg lg:text-xl'><span className='font-semibold'>Posted On</span> : {post?.CreatedAt} </div>
             <div className='text-lg lg:text-xl'><span className='font-semibold'>AD ID</span> : {post.ID}</div>
-            {/* <div ><a href={`mailto:${post.UserEmail}`} className='flex rounded-lg bg-pink-800 w-40 justify-center items-center'><BiMailSend /> Send Inquiry</a></div> */}
-            <div ><Button href={`mailto:${post.UserEmail}`} className='flex '><BiMailSend /> Send Inquiry</Button></div>
+            <div ><Button href={`mailto:${post.UserEmail}?subject=Interested in ${post.Title} from Equibbler`} className='flex '><BiMailSend /> Send Inquiry</Button></div>
         </div>
 
         <hr />

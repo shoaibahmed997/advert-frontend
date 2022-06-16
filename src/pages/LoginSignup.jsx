@@ -28,7 +28,6 @@ const Login = ()=>{
     })
   
     const res = await req.json()
-    console.log(res)
   
     if (res?.success){
       localStorage.setItem("AdvertApptoken",res.token)
@@ -89,7 +88,6 @@ const Signup = ()=>{
     })
   
     const res = await req.json()
-    console.log(res)
   
     if (res?.success){
       localStorage.setItem("AdvertApptoken",res.token)
