@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialUserState = {
-    user :  {}
+    user : JSON.parse(localStorage.getItem("AdvertAppUserDetail")) || {}
 }
 
 const TokenInitialState = {
@@ -38,10 +38,3 @@ export const  CurrentPostReducer = createReducer({CurrentPostState:{post:{}}},{
         state.post = {}
     }
 })
-
-// EXPERIMENTAL
-// export const UserVisitedPosts = createReducer({posts:[]},{
-//     "ADD_POST" : (state,action)=>{
-//         s
-//     }
-// })

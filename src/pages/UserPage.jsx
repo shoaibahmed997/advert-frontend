@@ -3,9 +3,21 @@ import { motion } from 'framer-motion'
 import { Tab,Row,Nav, Col,Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero'
+import baseurl from '../baseurl'
+import { useQuery } from 'react-query'
+import Loading from '../helper/Loading'
+import useAuth from '../Hooks/useAuth'
+import PostbyUser from '../components/PostbyUser'
+
+const fetchPostbyuser = async({queryKey})=>{
+    const email = queryKey[1]
+    const req  = await fetch(baseurl+"/api/posts/user/"+email)
+    const res = await req.json()
+    return res
+}
 
 const UserPage = () => {
-    const [hasdata,sethasdata] = React.useState(false)
+    const user = useAuth()
     const [selectAnimation,setSelectAnimation]  = React.useState(1)
     const variant = {
         initial:{scale:0,opacity:0},
@@ -15,6 +27,12 @@ const UserPage = () => {
         initial:{scale:0,x:-200,opacity:0},
         animate:{scale:[1,1,0.8,1],x:[-200,0,400],opacity:[0,1,0]},
       }
+
+    const {data,isLoading,isError} = useQuery(["userposts",user.Email],fetchPostbyuser,{
+        refetchOnWindowFocus:false,
+        staleTime:120000
+    })
+
   return (
     <div>
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -36,9 +54,13 @@ const UserPage = () => {
       <Tab.Content>
         <Tab.Pane eventKey="first">
         <div>
-            all post by you
+            <h1>All Posts by you</h1>
             <div>
-                {hasdata ? <Hero /> : <h1>No ad posted by you! <br />Post one <Link to='/create-post'>now</Link></h1>}
+                {isLoading ? <Loading /> :
+                isError ? <h1>Error Fetching Data</h1>:
+                data?.data ? <PostbyUser data={data.data} />:
+                <h1>No ad posted by you! <br />Post one <Link to='/create-post'>now</Link></h1>
+                }
             </div>
         </div>
         </Tab.Pane>

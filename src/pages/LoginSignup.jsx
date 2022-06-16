@@ -32,9 +32,9 @@ const Login = ()=>{
   
     if (res?.success){
       localStorage.setItem("AdvertApptoken",res.token)
+      localStorage.setItem("AdvertAppUserDetail",JSON.stringify({ID:res.user.id,firstname:res.user.firstname,Email:email}))
       dispatch({type:"ADD_TOKEN",payload:res.token})
-      dispatch({type:"ADD_USER",payload:res.user})
-
+      dispatch({type:"ADD_USER",payload:{ID:res.user.id,firstname:res.user.firstname,Email:email}})
       navigate('/')
     }else{
        Swal.fire({
@@ -93,8 +93,9 @@ const Signup = ()=>{
   
     if (res?.success){
       localStorage.setItem("AdvertApptoken",res.token)
+      localStorage.setItem("AdvertAppUserDetail",JSON.stringify({ID:res.user.id,firstname:res.user.firstname,Email:email}))
       dispatch({type:"ADD_TOKEN",payload:res.token})
-      dispatch({type:"ADD_USER",payload:res.user})
+      dispatch({type:"ADD_USER",payload:{ID:res.user.id,firstname:res.user.firstname,Email:email}})
       navigate('/')
     }else{
        Swal.fire({
